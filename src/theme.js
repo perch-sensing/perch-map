@@ -1,4 +1,4 @@
-export default {
+const theme = {
   color: {
     green: "#79c79e",
     warning: "#fbdd83",
@@ -13,3 +13,5 @@ export default {
     body: `"Nunito Sans", sans-serif`,
   },
 };
+
+export default theme;
