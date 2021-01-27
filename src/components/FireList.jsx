@@ -14,7 +14,7 @@ const navCardCss = css`
   overflow: hidden;
   max-width: 300px;
   width: 50%;
-  min-width: 100px;
+  min-width: 250px;
 `;
 
 const firePillCss = (theme) => css`
@@ -39,6 +39,8 @@ const fireListCss = (theme) => css`
   font-size: 20px;
   text-transform: uppercase;
   color: ${theme.color.leadBlue};
+  overflow-y: scroll;
+  max-height: 80vh;
 `;
 const fireCss = css`
   padding: 10px;

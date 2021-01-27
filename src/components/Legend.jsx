@@ -29,16 +29,16 @@ const iconCss = css`
 `;
 
 const fireOriginCss = css`
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background-color: red;
   border: 2px solid white;
 `;
 
 const perchSensorCss = (theme) => css`
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-color: ${theme.color.leadBlue};
 `;

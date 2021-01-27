@@ -13,6 +13,7 @@ const infoCardCss = css`
   width: 50%;
   min-width: 300px;
   height: 80%;
+  overflow-y: scroll;
 `;
 
 const contentCss = css`
