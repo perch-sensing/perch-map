@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.43471332097971, 39.813405185815299]
+      },
+      "properties": {
+        "OBJECTID": 1,
+        "NAME": "Camp Fire",
+        "NEAR_DIST": 60.849531857320521,
+        "Date_Started": 1541635200000,
+        "Deaths": 85,
+        "Structures_Destroyed": 18804,
+        "Cause": "Power line",
+        "Total_Cost": "$16.65 billion",
+        "Acreage": 153336
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.62880334677122, 38.608954995871521]
+      },
+      "properties": {
+        "OBJECTID": 2,
+        "NAME": "Tubbs Fire",
+        "NEAR_DIST": 273.79276662346587,
+        "Date_Started": 1507420800000,
+        "Deaths": 22,
+        "Structures_Destroyed": 5643,
+        "Cause": "Electrical System",
+        "Total_Cost": "$1.3 billion",
+        "Acreage": 36807
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.22190219553825, 37.861143965454261]
+      },
+      "properties": {
+        "OBJECTID": 3,
+        "NAME": "Tunnel Fire",
+        "NEAR_DIST": 387.34849305555849,
+        "Date_Started": 687830400000,
+        "Deaths": 25,
+        "Structures_Destroyed": 3280,
+        "Cause": "Vegetation fire",
+        "Total_Cost": "$1.5 billion",
+        "Acreage": 1520
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.74822784331138, 38.843714318745221]
+      },
+      "properties": {
+        "OBJECTID": 5,
+        "NAME": "Valley Fire",
+        "NEAR_DIST": 173.4216124163639,
+        "Date_Started": 1442016000000,
+        "Deaths": 4,
+        "Structures_Destroyed": 1955,
+        "Cause": "Faulty wiring",
+        "Total_Cost": "$921 million",
+        "Acreage": 76067
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.70131227877729, 34.235004849606177]
+      },
+      "properties": {
+        "OBJECTID": 7,
+        "NAME": "Woolsey Fire",
+        "NEAR_DIST": 56.48657358069655,
+        "Date_Started": 1541635200000,
+        "Deaths": 3,
+        "Structures_Destroyed": 1643,
+        "Cause": "Utility company equipment",
+        "Total_Cost": "$6 billion",
+        "Acreage": 96949
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.62361362163813, 40.654305151318603]
+      },
+      "properties": {
+        "OBJECTID": 8,
+        "NAME": "Carr Fire",
+        "NEAR_DIST": 169.90193058229625,
+        "Date_Started": 1532304000000,
+        "Deaths": 8,
+        "Structures_Destroyed": 1604,
+        "Cause": "Vehicle malfunction",
+        "Total_Cost": "$1.7 billion",
+        "Acreage": 229651
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.0803233564187, 34.41206484666975]
+      },
+      "properties": {
+        "OBJECTID": 9,
+        "NAME": "Thomas Fire",
+        "NEAR_DIST": 64.796358952449324,
+        "Date_Started": 1512345600000,
+        "Deaths": 2,
+        "Structures_Destroyed": 1063,
+        "Cause": "Downed power line",
+        "Total_Cost": "$2.2 billion",
+        "Acreage": 281893
+      }
+    }
+  ]
+}
