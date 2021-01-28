@@ -13,7 +13,6 @@ const infoCardCss = css`
   width: 50%;
   min-width: 300px;
   height: 80%;
-  overflow-y: scroll;
 `;
 
 const contentCss = css`
@@ -21,7 +20,7 @@ const contentCss = css`
   padding-top: 70px;
   background-color: white;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   overflow-y: scroll;
 `;
 
