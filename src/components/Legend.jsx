@@ -1,17 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-const legendCss = css`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+const legendCss = (theme) => css`
   display: flex;
-  padding: 20px 30px;
+  padding: 10px 40px;
+  background-color: white;
+  min-width: max-content;
+  box-shadow: ${theme.shadow.card};
 `;
 
 const legendListCss = css`
   list-style: none;
   padding: 0;
+  margin: 0;
+`;
+
+const mapElementCss = css`
+  margin: 10px 0;
 `;
 
 const labelCss = css`
@@ -41,6 +46,7 @@ const perchSensorCss = (theme) => css`
   height: 12px;
   border-radius: 50%;
   background-color: ${theme.color.leadBlue};
+  margin-left: 7px;
 `;
 const burnAreaCss = (theme) => css`
   position: relative;
@@ -60,10 +66,10 @@ const legendContents = {
 /**
  * A marker in the Legend
  */
-const MapElement = ({ mapElCss, label }) => {
+const MapElement = ({ mapIconCss, label }) => {
   return (
-    <li>
-      <i css={[iconCss, mapElCss]}></i>
+    <li css={mapElementCss}>
+      <i css={[iconCss, mapIconCss]}></i>
       <p css={labelCss}>{label}</p>
     </li>
   );
@@ -74,7 +80,7 @@ export default function Legend() {
     <aside css={legendCss}>
       <ul css={legendListCss}>
         {Object.entries(legendContents).map(([label, css]) => (
-          <MapElement mapElCss={css} label={label} key={label} />
+          <MapElement mapIconCss={css} label={label} key={label} />
         ))}
       </ul>
     </aside>

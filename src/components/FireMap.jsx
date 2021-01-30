@@ -1,6 +1,9 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import ReactMapboxGl, { GeoJSONLayer, ScaleControl } from "react-mapbox-gl";
 import { useState } from "react";
 import { useTransition } from "react-spring";
+import { breakpointActive } from "../utils";
 
 import Legend from "../components/Legend";
 import InfoCard from "../components/InfoCard";
@@ -10,6 +13,72 @@ import fireOriginJSON from "../assets/fire-origins.json";
 import firePerimeterJSON from "../assets/fire-perimeters.json";
 import perchSensorJSON from "../assets/sensor-locations.json";
 import theme from "../theme";
+
+const fireMapCss = css`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(500px, 1fr) 1fr 1fr;
+  grid-template-rows: 100px 1fr 1fr;
+  grid-template-areas:
+    "fire-nav top top-right"
+    "fire-info mid right"
+    " fire-info bottom legend";
+
+  ${theme.breakpoint.small} {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40vh 60vh;
+    grid-template-areas:
+      "fire-nav"
+      "fire-info";
+  }
+`;
+
+const gridAreaCss = css`
+  width: 100%;
+  height: 100%;
+`;
+
+const fireNavWrapperCss = css`
+  grid-area: fire-nav;
+  align-self: flex-end;
+  margin-left: 20px;
+  padding-bottom: 13px;
+
+  ${theme.breakpoint.small} {
+    margin-top: 20px;
+    align-self: flex-start;
+  }
+`;
+
+const fireLegendWrapperCss = css`
+  display: block;
+  grid-area: legend;
+  z-index: 1;
+  align-self: flex-end;
+  justify-self: flex-end;
+  margin: 20px;
+  margin-bottom: 50px;
+
+  ${theme.breakpoint.small} {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    height: auto;
+  }
+`;
+
+const fireInfoWrapperCss = css`
+  ${gridAreaCss};
+  grid-area: fire-info;
+  margin-left: 25px;
+
+  ${theme.breakpoint.small} {
+    margin-left: 0px;
+  }
+`;
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -25,8 +94,10 @@ const mapStyles = {
 
 export default function FireMap() {
   const [location, setLocation] = useState([-121.610052, 39.763315]);
+  const [zoom, setZoom] = useState([11]);
   const [fireInfo, setFireInfo] = useState(null);
-  const [fireListOpen, setFireListOpen] = useState(true);
+  const [fireListOpen, setFireListOpen] = useState(false);
+
   const cardTransition = useTransition(fireInfo, null, {
     from: {
       transform: "translateY(100%)",
@@ -47,8 +118,16 @@ export default function FireMap() {
   function handleNav(fireData) {
     setFireListOpen(false);
     let coords = [...fireData.geometry.coordinates];
-    coords[0] -= 0.05;
+    if (breakpointActive(theme.breakpoint.small)) {
+      // center fire near top of screen
+      coords[1] -= 0.03;
+    } else {
+      // center fire near right of screen
+      coords[0] -= 0.04;
+    }
+
     setLocation(coords);
+    setZoom([12]);
     setFireInfo(fireData.properties);
   }
 
@@ -75,12 +154,13 @@ export default function FireMap() {
   }
 
   return (
-    <section className="FireMap">
+    <main className="FireMap" css={fireMapCss}>
       <Map
         // eslint-disable-next-line
         style="mapbox://styles/mapbox/light-v10"
         containerStyle={mapStyles}
         center={location}
+        zoom={zoom}
       >
         <GeoJSONLayer
           data={firePerimeterJSON}
@@ -160,28 +240,35 @@ export default function FireMap() {
             bottom: "20px",
             border: "none",
             boxShadow: "none",
+            zIndex: 5,
           }}
         />
       </Map>
-      <Legend />
-      <FireList
-        onFireSelected={handleNav}
-        isOpen={fireListOpen}
-        onToggle={handleFireListToggle}
-      />
 
-      {cardTransition.map(
-        ({ item, props }) =>
-          item && (
-            <InfoCard
-              key="InfoCard"
-              style={props}
-              onHide={() => setFireInfo(null)}
-              fireInfo={fireInfo}
-              onFireChange={handleFireControlChange}
-            />
-          )
-      )}
-    </section>
+      <section css={fireNavWrapperCss}>
+        <FireList
+          onFireSelected={handleNav}
+          isOpen={fireListOpen}
+          onToggle={handleFireListToggle}
+        />
+      </section>
+      <section css={fireLegendWrapperCss}>
+        <Legend />
+      </section>
+      <section css={fireInfoWrapperCss}>
+        {cardTransition.map(
+          ({ item, props }) =>
+            item && (
+              <InfoCard
+                key="InfoCard"
+                style={props}
+                onHide={() => setFireInfo(null)}
+                fireInfo={fireInfo}
+                onFireChange={handleFireControlChange}
+              />
+            )
+        )}
+      </section>
+    </main>
   );
 }
