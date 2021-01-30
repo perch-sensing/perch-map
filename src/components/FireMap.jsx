@@ -25,8 +25,10 @@ const mapStyles = {
 
 export default function FireMap() {
   const [location, setLocation] = useState([-121.610052, 39.763315]);
+  const [zoom, setZoom] = useState([11]);
   const [fireInfo, setFireInfo] = useState(null);
   const [fireListOpen, setFireListOpen] = useState(true);
+
   const cardTransition = useTransition(fireInfo, null, {
     from: {
       transform: "translateY(100%)",
@@ -49,6 +51,7 @@ export default function FireMap() {
     let coords = [...fireData.geometry.coordinates];
     coords[0] -= 0.05;
     setLocation(coords);
+    setZoom([12]);
     setFireInfo(fireData.properties);
   }
 
@@ -81,6 +84,7 @@ export default function FireMap() {
         style="mapbox://styles/mapbox/light-v10"
         containerStyle={mapStyles}
         center={location}
+        zoom={zoom}
       >
         <GeoJSONLayer
           data={firePerimeterJSON}
