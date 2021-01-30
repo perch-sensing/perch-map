@@ -3,16 +3,15 @@ import { css } from "@emotion/react";
 import { a } from "react-spring";
 import { X as XIcon } from "react-feather";
 import DirectionalControls from "./DirectionalControls";
+import { unixTimeToDate } from "../utils";
 
-const infoCardCss = css`
-  position: absolute;
-  bottom: 0;
-  left: 20px;
+const infoCardCss = (theme) => css`
+  position: relative;
   background-color: white;
-  max-width: 500px;
-  width: 50%;
-  min-width: 300px;
-  height: 80%;
+  width: 100%;
+  height: 100%;
+  z-index: 7;
+  box-shadow: ${theme.shadow.card};
 `;
 
 const contentCss = css`
@@ -32,15 +31,19 @@ const directionalControlCss = css`
 
 const closeIconCss = css`
   position: fixed;
-  top: 25px;
-  left: 25px;
+  top: 20px;
+  left: 20px;
   cursor: pointer;
 `;
 
-const titleCss = css`
+const titleCss = (theme) => css`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+
+  ${theme.breakpoint.small} {
+    flex-direction: column;
+  }
 `;
 
 const titleTextCss = (theme) => css`
@@ -57,23 +60,17 @@ const fireDateCss = (theme) => css`
   font-family: ${theme.font.title};
 `;
 
-const fireStatsCss = css`
+const fireStatsCss = (theme) => css`
   display: grid;
   padding: 30px 0;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   list-style: none;
-`;
 
-function getFireDateString(unixTime) {
-  const date = new Date(unixTime);
-  date.setDate(date.getDate() + 1);
-  return date.toLocaleString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
+  ${theme.breakpoint.small} {
+    grid-template-columns: 1fr;
+  }
+`;
 
 function numberWithCommas(num) {
   return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -114,7 +111,12 @@ export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
         <div className="title" css={titleCss}>
           <h2 css={titleTextCss}>{fireInfo?.NAME}</h2>
           <p css={fireDateCss}>
-            {fireInfo && getFireDateString(fireInfo.Date_Started)}
+            {fireInfo &&
+              unixTimeToDate(fireInfo.Date_Started, {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
           </p>
         </div>
         <p>

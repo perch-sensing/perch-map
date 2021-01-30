@@ -12,6 +12,13 @@ const theme = {
     title: `"Fira Sans", sans-serif`,
     body: `"Nunito Sans", sans-serif`,
   },
+  breakpoint: {
+    small: "@media screen and (max-width: 735px)",
+    medium: "@media screen and (max-width: 1070px)",
+  },
+  shadow: {
+    card: "0 6px 20px #0000004a",
+  },
 };
 
 export default theme;

@@ -7,9 +7,8 @@ import { unixTimeToDate } from "../utils";
 import fireOrigins from "../assets/fire-origins.json";
 
 const fireNavCss = css`
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  position: relative;
+  z-index: 2;
   text-align: left;
   max-width: 300px;
   width: 100%;
@@ -66,7 +65,11 @@ const fireDateCss = (theme) => css`
 
 const fireNavInfo = fireOrigins.features.map((f) => ({
   name: f.properties.NAME,
-  date: unixTimeToDate(f.properties.Date_Started).replaceAll("/", "."),
+  date: unixTimeToDate(f.properties.Date_Started, {
+    timeZoneName: "short",
+  })
+    .split(",")[0]
+    .replaceAll("/", "."),
 }));
 
 export default function FireList({ onFireSelected, isOpen, onToggle }) {
