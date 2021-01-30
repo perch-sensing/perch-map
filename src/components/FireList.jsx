@@ -6,14 +6,13 @@ import { unixTimeToDate } from "../utils";
 
 import fireOrigins from "../assets/fire-origins.json";
 
-const navCardCss = css`
+const fireNavCss = css`
   position: absolute;
   top: 20px;
   left: 20px;
   text-align: left;
-  overflow: hidden;
   max-width: 300px;
-  width: 50%;
+  width: 100%;
   min-width: 250px;
 `;
 
@@ -30,7 +29,10 @@ const firePillCss = (theme) => css`
   cursor: pointer;
   z-index: 5;
 `;
+
 const fireListCss = (theme) => css`
+  max-height: 80vh;
+  width: 100%;
   list-style: circle;
   padding: 20px 0;
   padding-left: 45px;
@@ -40,8 +42,8 @@ const fireListCss = (theme) => css`
   text-transform: uppercase;
   color: ${theme.color.leadBlue};
   overflow-y: scroll;
-  max-height: 80vh;
 `;
+
 const fireCss = css`
   padding: 10px;
   cursor: pointer;
@@ -68,6 +70,15 @@ const fireNavInfo = fireOrigins.features.map((f) => ({
 }));
 
 export default function FireList({ onFireSelected, isOpen, onToggle }) {
+  const fireListWrapperCss = css`
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    pointer-events: ${isOpen ? "all" : "none"};
+    overflow: hidden;
+  `;
+
   const chevronProps = useSpring({
     transform: `rotate(${isOpen ? 180 : 0}deg)`,
   });
@@ -89,7 +100,7 @@ export default function FireList({ onFireSelected, isOpen, onToggle }) {
   }
 
   return (
-    <article css={navCardCss}>
+    <article css={fireNavCss}>
       <a.div
         className="fire-pill"
         style={firePillProps}
@@ -106,15 +117,16 @@ export default function FireList({ onFireSelected, isOpen, onToggle }) {
           <ChevronDown color="white" />
         </a.div>
       </a.div>
-
-      <a.ul css={fireListCss} style={fireListProps} key={Date.now()}>
-        {fireNavInfo.map(({ name, date }) => (
-          <li key={name} css={fireCss} onClick={() => selectFire(name)}>
-            <h3>{name}</h3>
-            <p css={fireDateCss}>{date}</p>
-          </li>
-        ))}
-      </a.ul>
+      <div css={fireListWrapperCss}>
+        <a.ul css={fireListCss} style={fireListProps} key={Date.now()}>
+          {fireNavInfo.map(({ name, date }) => (
+            <li key={name} css={fireCss} onClick={() => selectFire(name)}>
+              <h3>{name}</h3>
+              <p css={fireDateCss}>{date}</p>
+            </li>
+          ))}
+        </a.ul>
+      </div>
     </article>
   );
 }
