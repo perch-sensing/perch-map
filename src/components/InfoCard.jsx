@@ -119,10 +119,7 @@ export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
               })}
           </p>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+        <p>{fireInfo?.description}</p>
 
         <ul css={fireStatsCss}>
           <StatBadge stat="Acres" value={numberWithCommas(fireInfo?.Acreage)} />

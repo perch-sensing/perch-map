@@ -5,6 +5,7 @@ const legendCss = (theme) => css`
   display: flex;
   padding: 10px 40px;
   background-color: white;
+  min-width: max-content;
   box-shadow: ${theme.shadow.card};
 `;
 
