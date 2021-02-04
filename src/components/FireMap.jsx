@@ -60,6 +60,7 @@ const fireLegendWrapperCss = css`
   justify-self: flex-end;
   margin: 20px;
   margin-bottom: 50px;
+  pointer-events: none;
 
   ${theme.breakpoint.small} {
     position: absolute;
