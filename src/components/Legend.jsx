@@ -15,6 +15,12 @@ const legendListCss = css`
   margin: 0;
 `;
 
+const mapElementWrapperCss = css`
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+`;
+
 const mapElementCss = css`
   margin: 10px 0;
 `;
@@ -46,7 +52,6 @@ const perchSensorCss = (theme) => css`
   height: 12px;
   border-radius: 50%;
   background-color: ${theme.color.leadBlue};
-  margin-left: 7px;
 `;
 const burnAreaCss = (theme) => css`
   position: relative;
@@ -55,6 +60,7 @@ const burnAreaCss = (theme) => css`
   background-color: ${theme.color.problem};
   border: 2px solid ${theme.color.problem};
   opacity: 0.4;
+  margin-bottom: 1px;
 `;
 
 const legendContents = {
@@ -69,7 +75,9 @@ const legendContents = {
 const MapElement = ({ mapIconCss, label }) => {
   return (
     <li css={mapElementCss}>
-      <i css={[iconCss, mapIconCss]}></i>
+      <div css={mapElementWrapperCss}>
+        <i css={[iconCss, mapIconCss]}></i>
+      </div>
       <p css={labelCss}>{label}</p>
     </li>
   );
