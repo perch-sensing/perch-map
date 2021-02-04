@@ -41,6 +41,11 @@ const fireListCss = (theme) => css`
   text-transform: uppercase;
   color: ${theme.color.leadBlue};
   overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const fireCss = css`
