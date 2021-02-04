@@ -21,6 +21,11 @@ const contentCss = css`
   width: 100%;
   height: 100%;
   overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const directionalControlCss = css`
