@@ -17,7 +17,8 @@
         "Structures_Destroyed": 1604,
         "Cause": "Vehicle malfunction",
         "Total_Cost": "$1.7 billion",
-        "Acreage": 229651
+        "Acreage": 229651,
+        "description": "Roadside plants caught fire due to sparks thrown from a passing trailer along Highway 299. The fire grew to threaten both Shasta and Trinity counties. Houses around Whiskeytown Lake quickly burned, and in Redding the fire developed into a firestorm with wind-speeds up to 143 mph."
       }
     },
     {
@@ -36,7 +37,8 @@
         "Structures_Destroyed": 18804,
         "Cause": "Power line",
         "Total_Cost": "$16.65 billion",
-        "Acreage": 153336
+        "Acreage": 153336,
+        "description": "The deadliest fire in California history, the Camp Fire destroyed the town of Paradise and burned through the surrounding wilderness. Reports of the fire came in 15 minutes after ignition. 10 minutes after the initial report, the fire had already consumed 10 acres of dry foliage, fueled by katabatic winds. The ensuing firestorm burned through the town and overcame evacuees who were stuck in traffic trying to escape."
       }
     },
     {
@@ -55,7 +57,8 @@
         "Structures_Destroyed": 1955,
         "Cause": "Faulty wiring",
         "Total_Cost": "$921 million",
-        "Acreage": 76067
+        "Acreage": 76067,
+        "description": "A small brushfire fueled by 60 mph winds raged through the Mayacamas Mountains, threatening Sonoma County and the Whispering Pines region. A thick layer of dead undergrowth provided plentiful fuel for the quickly spreading fire. The combination of the mountainous landscape and the high winds whipped the blaze into a swirling firestorm, consuming large parts of Cobb and Middletown."
       }
     },
     {
@@ -74,7 +77,8 @@
         "Structures_Destroyed": 5643,
         "Cause": "Electrical System",
         "Total_Cost": "$1.3 billion",
-        "Acreage": 36807
+        "Acreage": 36807,
+        "description": "Napa, Sonoma and Santa Rosa suffered great losses of property and life in the wake of the Tubbs Fire. Starting in Calistoga, the fire moved southwest and into Santa Rosa, where it burned through suburban neighborhoods at a frightening rate. High winds from the northeast forced the fire into more densely populated areas."
       }
     },
     {
@@ -93,7 +97,8 @@
         "Structures_Destroyed": 3280,
         "Cause": "Vegetation fire",
         "Total_Cost": "$1.5 billion",
-        "Acreage": 1520
+        "Acreage": 1520,
+        "description": "Starting from the remains of a small 5 acre fire, the Tunnel Fire swept into Berkley and destroyed several neighborhoods. An hour after its initial report, the fire had destroyed 790 structures. The regional Diablo Winds swept up burning debris, causing several smaller blazes in the immediate area."
       }
     },
     {
@@ -112,7 +117,8 @@
         "Structures_Destroyed": 1063,
         "Cause": "Downed power line",
         "Total_Cost": "$2.2 billion",
-        "Acreage": 281893
+        "Acreage": 281893,
+        "description": "Downed power lines near Steckel Park brought on a powerful blaze that burned its way through Ventura and Ojai. A sustained onslaught of dry Santa Anna winds drove the fire forward. At its peak, the enormity of the fire began to influence the weather patterns in the region, drawing in more air and creating its own wind."
       }
     },
     {
@@ -131,7 +137,8 @@
         "Structures_Destroyed": 1643,
         "Cause": "Utility company equipment",
         "Total_Cost": "$6 billion",
-        "Acreage": 96949
+        "Acreage": 96949,
+        "description": "A power outage at Santa Suzana Field Laboratory led to a brushfire. Fueled by the Santa Anna winds, the Woolsey fire moved south and burned its way through the coastal mountain range, engulfing many properties nestled in the hills. Thanks to the efforts of thousands of firefighters, the fire was entirely contained by November 21."
       }
     }
   ]
