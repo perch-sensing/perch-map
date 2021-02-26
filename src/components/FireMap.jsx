@@ -1,13 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import ReactMapboxGl, { GeoJSONLayer, ScaleControl } from "react-mapbox-gl";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTransition } from "react-spring";
 import { breakpointActive } from "../utils";
+import { HelpCircle } from "react-feather";
 
-import Legend from "../components/Legend";
-import InfoCard from "../components/InfoCard";
+import Legend from "./Legend";
+import InfoCard from "./InfoCard";
 import FireList from "./FireList";
+import PageOverview from "./PageOverview";
 
 import fireOriginJSON from "../assets/fire-origins.json";
 import firePerimeterJSON from "../assets/fire-perimeters.json";
@@ -19,11 +21,11 @@ const fireMapCss = css`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: minmax(500px, 1fr) 1fr 1fr;
+  grid-template-columns: minmax(400px, 1fr) 50px minmax(300px, 1fr);
   grid-template-rows: 100px 1fr 1fr;
   grid-template-areas:
-    "fire-nav top top-right"
-    "fire-info mid right"
+    "fire-nav top page-overview"
+    "fire-info mid page-overview"
     " fire-info bottom legend";
 
   ${theme.breakpoint.small} {
@@ -43,6 +45,7 @@ const gridAreaCss = css`
 const fireNavWrapperCss = css`
   grid-area: fire-nav;
   align-self: flex-end;
+  justify-self: flex-start;
   margin-left: 20px;
   padding-bottom: 13px;
 
@@ -50,6 +53,28 @@ const fireNavWrapperCss = css`
     margin-top: 20px;
     align-self: flex-start;
   }
+`;
+
+const pageOverviewWrapperCss = css`
+  position: relative;
+  grid-area: page-overview;
+  margin-right: 25px;
+  align-self: flex-start;
+  justify-self: flex-end;
+
+  ${theme.breakpoint.small} {
+    position: absolute;
+    grid-area: initial;
+    top: 0;
+    right: 0;
+    margin-right: 0px;
+  }
+`;
+
+const helpButtonCss = css`
+  position: absolute;
+  top: 35px;
+  right: 35px;
 `;
 
 const fireLegendWrapperCss = css`
@@ -97,9 +122,16 @@ export default function FireMap() {
   const [location, setLocation] = useState([-121.610052, 39.763315]);
   const [zoom, setZoom] = useState([11]);
   const [fireInfo, setFireInfo] = useState(null);
+  const [overviewOpen, setOverviewOpen] = useState(false);
   const [fireListOpen, setFireListOpen] = useState(false);
 
-  const cardTransition = useTransition(fireInfo, null, {
+  useEffect(() => {
+    if (localStorage.getItem("visitedMapPage")) return;
+    setOverviewOpen(true);
+    localStorage.setItem("visitedMapPage", true);
+  }, []);
+
+  const fireCardTransition = useTransition(fireInfo, null, {
     from: {
       transform: "translateY(100%)",
     },
@@ -108,6 +140,18 @@ export default function FireMap() {
     },
     leave: {
       transform: "translateY(100%)",
+    },
+  });
+
+  const pageOverviewTransition = useTransition(overviewOpen, null, {
+    from: {
+      transform: "translateY(-110%)",
+    },
+    enter: {
+      transform: "translateY(0%)",
+    },
+    leave: {
+      transform: "translateY(-110%)",
     },
   });
 
@@ -253,11 +297,31 @@ export default function FireMap() {
           onToggle={handleFireListToggle}
         />
       </section>
+      <section css={pageOverviewWrapperCss}>
+        <button
+          className="wrapper"
+          css={helpButtonCss}
+          onClick={() => setOverviewOpen(true)}
+        >
+          <HelpCircle size={30} />
+        </button>
+
+        {pageOverviewTransition.map(
+          ({ item, props }) =>
+            item && (
+              <PageOverview
+                key="PageOverview"
+                style={props}
+                onHide={() => setOverviewOpen(false)}
+              />
+            )
+        )}
+      </section>
       <section css={fireLegendWrapperCss}>
         <Legend />
       </section>
       <section css={fireInfoWrapperCss}>
-        {cardTransition.map(
+        {fireCardTransition.map(
           ({ item, props }) =>
             item && (
               <InfoCard

@@ -35,3 +35,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+button.cta {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: white;
+  background-color: #ee6b47;
+  border: none;
+  border-radius: 25px;
+  padding: 15px 55px;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.1s;
+}
+
+button.cta:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+button.wrapper {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
