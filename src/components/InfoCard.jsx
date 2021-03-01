@@ -77,32 +77,6 @@ const fireStatsCss = (theme) => css`
   }
 `;
 
-function numberWithCommas(num) {
-  return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-function StatBadge({ stat, value }) {
-  const statCss = (theme) => css`
-    font-size: 15px;
-    color: ${theme.color.leadBlue};
-    text-transform: uppercase;
-  `;
-  const valueCss = (theme) => css`
-    color: ${theme.color.slate};
-    margin-bottom: 0;
-    margin-top: 5px;
-    font-family: ${theme.font.title};
-    font-size: 25px;
-    font-weight: 300;
-  `;
-  return (
-    <li>
-      <h3 css={statCss}>{stat}</h3>
-      <p css={valueCss}>{value}</p>
-    </li>
-  );
-}
-
 export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
   return (
     <a.article className="InfoCard" css={infoCardCss} style={style}>
@@ -143,4 +117,30 @@ export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
       </div>
     </a.article>
   );
+}
+
+function StatBadge({ stat, value }) {
+  const statCss = (theme) => css`
+    font-size: 15px;
+    color: ${theme.color.leadBlue};
+    text-transform: uppercase;
+  `;
+  const valueCss = (theme) => css`
+    color: ${theme.color.slate};
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-family: ${theme.font.title};
+    font-size: 25px;
+    font-weight: 300;
+  `;
+  return (
+    <li>
+      <h3 css={statCss}>{stat}</h3>
+      <p css={valueCss}>{value}</p>
+    </li>
+  );
+}
+
+function numberWithCommas(num) {
+  return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
