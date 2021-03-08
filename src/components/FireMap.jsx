@@ -21,7 +21,10 @@ const fireMapCss = css`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: minmax(400px, 1fr) 50px minmax(300px, 1fr);
+  grid-template-columns: minmax(400px, 600px) minmax(50px, 1fr) minmax(
+      300px,
+      600px
+    );
   grid-template-rows: 100px 1fr 1fr;
   grid-template-areas:
     "fire-nav top page-overview"
