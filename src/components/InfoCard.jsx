@@ -96,7 +96,7 @@ const costSectionCss = (theme) => css`
 
 export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
   const roiChartData = {
-    labels: ["Perch Cost over 15 years", "Land Cost of Fire"],
+    labels: ["Perch Cost over 15 years", "Cost of Fire"],
 
     datasets: [
       {
