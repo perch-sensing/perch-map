@@ -18,6 +18,10 @@
         "Cause": "Vehicle malfunction",
         "Total_Cost": "$1.7 billion",
         "Acreage": 229651,
+        "DeploymentCost": 26,
+        "LandCost": 1700,
+        "ROI": 6419,
+        "DeploymentCoverage": 0.05,
         "description": "Roadside plants caught fire due to sparks thrown from a passing trailer along Highway 299. The fire grew to threaten both Shasta and Trinity counties. Houses around Whiskeytown Lake quickly burned, and in Redding the fire developed into a firestorm with wind-speeds up to 143 mph."
       }
     },
@@ -38,6 +42,10 @@
         "Cause": "Power line",
         "Total_Cost": "$16.65 billion",
         "Acreage": 153336,
+        "DeploymentCost": 7,
+        "LandCost": 2000,
+        "ROI": 37292,
+        "DeploymentCoverage": 0.19,
         "description": "The deadliest fire in California history, the Camp Fire destroyed the town of Paradise and burned through the surrounding wilderness. Reports of the fire came in 15 minutes after ignition. 10 minutes after the initial report, the fire had already consumed 10 acres of dry foliage, fueled by katabatic winds. The ensuing firestorm burned through the town and overcame evacuees who were stuck in traffic trying to escape."
       }
     },
@@ -58,6 +66,10 @@
         "Cause": "Faulty wiring",
         "Total_Cost": "$921 million",
         "Acreage": 76067,
+        "DeploymentCost": 10,
+        "LandCost": 921,
+        "ROI": 8418,
+        "DeploymentCoverage": 0.19,
         "description": "A small brushfire fueled by 60 mph winds raged through the Mayacamas Mountains, threatening Sonoma County and the Whispering Pines region. A thick layer of dead undergrowth provided plentiful fuel for the quickly spreading fire. The combination of the mountainous landscape and the high winds whipped the blaze into a swirling firestorm, consuming large parts of Cobb and Middletown."
       }
     },
@@ -78,6 +90,10 @@
         "Cause": "Electrical System",
         "Total_Cost": "$1.3 billion",
         "Acreage": 36807,
+        "DeploymentCost": 51,
+        "LandCost": 1300,
+        "ROI": 2428,
+        "DeploymentCoverage": 0.32,
         "description": "Napa, Sonoma and Santa Rosa suffered great losses of property and life in the wake of the Tubbs Fire. Starting in Calistoga, the fire moved southwest and into Santa Rosa, where it burned through suburban neighborhoods at a frightening rate. High winds from the northeast forced the fire into more densely populated areas."
       }
     },
@@ -98,6 +114,10 @@
         "Cause": "Vegetation fire",
         "Total_Cost": "$1.5 billion",
         "Acreage": 1520,
+        "DeploymentCost": 0.14,
+        "LandCost": 1500,
+        "ROI": 1094790,
+        "DeploymentCoverage": 0.45,
         "description": "Starting from the remains of a small 5 acre fire, the Tunnel Fire swept into Berkley and destroyed several neighborhoods. An hour after its initial report, the fire had destroyed 790 structures. The regional Diablo Winds swept up burning debris, causing several smaller blazes in the immediate area."
       }
     },
