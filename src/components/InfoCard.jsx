@@ -4,6 +4,8 @@ import { a } from "react-spring";
 import { X as XIcon } from "react-feather";
 import DirectionalControls from "./DirectionalControls";
 import { unixTimeToDate } from "../utils";
+import { Bar } from "react-chartjs-2";
+import theme from "../theme";
 
 const infoCardCss = (theme) => css`
   position: relative;
@@ -12,6 +14,10 @@ const infoCardCss = (theme) => css`
   height: 100%;
   z-index: 7;
   box-shadow: ${theme.shadow.card};
+
+  ${theme.breakpoint.small} {
+    width: 100vw;
+  }
 `;
 
 const contentCss = css`
@@ -77,7 +83,68 @@ const fireStatsCss = (theme) => css`
   }
 `;
 
+const costSectionCss = (theme) => css`
+  position: relative;
+  max-width: 100%;
+
+  h3 {
+    font-size: 30px;
+    color: ${theme.color.flame};
+    margin-top: 25px;
+  }
+`;
+
 export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
+  const roiChartData = {
+    labels: ["Perch Cost over 15 years", "Land Cost of Fire"],
+
+    datasets: [
+      {
+        label: "",
+        data: [fireInfo?.DeploymentCost, fireInfo?.LandCost],
+        backgroundColor: [theme.color.leadBlue, theme.color.problem],
+      },
+    ],
+  };
+
+  const roiChartOptions = {
+    scales: {
+      responsive: true,
+      maintainAspectRatio: true,
+      y: {
+        title: {
+          display: true,
+          text: "Millions",
+        },
+        ticks: {
+          callback: (val) => "$" + val,
+        },
+      },
+    },
+  };
+
+  const roiCss = (theme) => css`
+    display: inline-block;
+    color: ${fireInfo.ROI > 0 ? theme.color.greenSky : theme.color.problem};
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-family: "Fira Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      border-radius: 5px;
+      height: 17px;
+      margin-right: 10px;
+      background-color: ${fireInfo.ROI > 0
+        ? theme.color.greenSky
+        : theme.color.problem};
+    }
+  `;
+
   return (
     <a.article className="InfoCard" css={infoCardCss} style={style}>
       <DirectionalControls
@@ -114,6 +181,21 @@ export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
           <StatBadge stat="Deaths" value={numberWithCommas(fireInfo?.Deaths)} />
           <StatBadge stat="Cause" value={fireInfo?.Cause} />
         </ul>
+        {fireInfo?.ROI && (
+          <div className="cost-comparison" css={costSectionCss}>
+            <hr />
+
+            <h3>Cost Comparison</h3>
+            <p css={roiCss}>
+              {numberWithCommas(Math.round(fireInfo?.ROI)) + "% ROI"}
+            </p>
+            <Bar
+              data={roiChartData}
+              options={roiChartOptions}
+              height={"250px"}
+            />
+          </div>
+        )}
       </div>
     </a.article>
   );
