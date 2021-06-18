@@ -15,9 +15,6 @@ import fireOriginJSON from "../assets/fire-origins.json";
 import firePerimeterJSON from "../assets/fire-perimeters.json";
 import perchSensorJSON from "../assets/sensor-locations.json";
 import theme from "../theme";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
   
 const fireMapCss = css`
   position: relative;
