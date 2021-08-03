@@ -201,6 +201,17 @@ export default function FireMap() {
     setFireInfo(selectedFire.properties);
   }
 
+  function handleFireRegionClick(e) {
+    let coord = [e.lngLat.lng, e.lngLat.lat];
+    let selectedFire = firePerimeterJSON.features.find(
+      (fire) => 
+      console.log(fire.geometry.coordinates)
+    );
+    console.log(selectedFire)
+    setFireListOpen(false);
+    setFireInfo(selectedFire.properties);
+  }
+
   return (
     <main className="FireMap" css={fireMapCss}>
       
@@ -218,6 +229,7 @@ export default function FireMap() {
             "fill-color": theme.color.problem,
             "fill-opacity": 0.4,
           }}
+          fillOnClick={handleFireRegionClick}
         />
 
         <GeoJSONLayer

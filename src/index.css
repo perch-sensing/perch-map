@@ -62,3 +62,7 @@ button.wrapper {
   border: none;
   cursor: pointer;
 }
+
+.toast {
+  font-family: "Nunito Sans", sans-serif;
+}

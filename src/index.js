@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 defaults.animation = false;
-toast.error('Note: All Sensor Positions are Theoretical', {
+toast.error('Note: All sensor installations are theoretical', {
   position: "bottom-right",
   autoClose: 5000,
   hideProgressBar: false,
@@ -22,7 +22,7 @@ toast.error('Note: All Sensor Positions are Theoretical', {
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <ToastContainer limit = {1}/>
+    <ToastContainer />
   </React.StrictMode>,
   document.getElementById("root")
 );
