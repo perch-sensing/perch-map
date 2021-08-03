@@ -89,35 +89,6 @@ const costSectionCss = (theme) => css`
   }
 `;
 
-export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
-  const roiChartData = {
-    labels: ["Perch Cost over 15 years", "Cost of Fire"],
-
-    datasets: [
-      {
-        label: "",
-        data: [fireInfo?.DeploymentCost, fireInfo?.LandCost],
-        backgroundColor: [theme.color.leadBlue, theme.color.problem],
-      },
-    ],
-  };
-
-  const roiChartOptions = {
-    scales: {
-      responsive: true,
-      maintainAspectRatio: true,
-      y: {
-        title: {
-          display: true,
-          text: "Millions",
-        },
-        ticks: {
-          callback: (val) => "$" + val,
-        },
-      },
-    },
-  };
-
   const roiCss = (theme) => css`
     display: inline-block;
     color: ${fireInfo.ROI > 0 ? theme.color.greenSky : theme.color.problem};

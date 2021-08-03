@@ -202,7 +202,6 @@ export default function FireMap() {
   }
 
   function handleFireRegionClick(e) {
-    let coord = [e.lngLat.lng, e.lngLat.lat];
     let selectedFire = firePerimeterJSON.features.find(
       (fire) => 
       console.log(fire.geometry.coordinates)
