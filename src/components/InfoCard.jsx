@@ -5,7 +5,6 @@ import { X as XIcon } from "react-feather";
 import DirectionalControls from "./DirectionalControls";
 import { unixTimeToDate } from "../utils";
 import { BarChart, CartesianGrid, XAxis,YAxis,Tooltip, Bar, Legend, ResponsiveContainer } from "recharts"
-import theme from "../theme";
 
 const infoCardCss = (theme) => css`
   position: relative;
@@ -156,11 +155,6 @@ export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
               {numberWithCommas(Math.round(fireInfo?.ROI)) + "% ROI"}
             </p>
             <ROIBarChart data={[{"name":"costComparison", fireCost: fireInfo?.LandCost, deploymentCost: fireInfo?.DeploymentCost}]}/>
-            {/* <Bar
-              data={roiChartData}
-              //options={roiChartOptions}
-              height={"250px"}
-            /> */}
           </div>
         )}
       </div>
