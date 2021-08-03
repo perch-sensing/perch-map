@@ -4,7 +4,8 @@ import { a } from "react-spring";
 import { X as XIcon } from "react-feather";
 import DirectionalControls from "./DirectionalControls";
 import { unixTimeToDate } from "../utils";
-import { BarChart, CartesianGrid, XAxis,YAxis,Tooltip, Bar, Legend, ResponsiveContainer } from "recharts"
+import AxisLabel from "./axis";
+import { BarChart, CartesianGrid, XAxis,YAxis,Tooltip, Bar, Legend, ResponsiveContainer, Label } from "recharts"
 
 const infoCardCss = (theme) => css`
   position: relative;
@@ -163,7 +164,6 @@ export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
 }
 
 function ROIBarChart(props) {
-
   const testStyle = {
     position : "relative",
     width: "500px",
@@ -172,8 +172,8 @@ function ROIBarChart(props) {
   return <div style={testStyle}>< ResponsiveContainer width="100%" height="100%"> 
     <BarChart data={props.data} height={250}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis/>
+      <XAxis dataKey={<Label value="Cost Comparison" fill={'black'} />} label={<Label value="Cost Comparison" fill={'black'} />} />
+      <YAxis label={<AxisLabel axisType="yAxis" x={15} y={125} width={0} height={0}>Cost in Millions</AxisLabel>}/>
       <Tooltip />
       <Legend />
       <Bar dataKey="fireCost" fill="#ee786d" />
