@@ -15,7 +15,7 @@ import fireOriginJSON from "../assets/fire-origins.json";
 import firePerimeterJSON from "../assets/fire-perimeters.json";
 import perchSensorJSON from "../assets/sensor-locations.json";
 import theme from "../theme";
-
+  
 const fireMapCss = css`
   position: relative;
   width: 100%;
@@ -201,8 +201,19 @@ export default function FireMap() {
     setFireInfo(selectedFire.properties);
   }
 
+  function handleFireRegionClick(e) {
+    let selectedFire = firePerimeterJSON.features.find(
+      (fire) => 
+      console.log(fire.geometry.coordinates)
+    );
+    console.log(selectedFire)
+    setFireListOpen(false);
+    setFireInfo(selectedFire.properties);
+  }
+
   return (
     <main className="FireMap" css={fireMapCss}>
+      
       <Map
         // eslint-disable-next-line
         style="mapbox://styles/mapbox/light-v10"
@@ -217,6 +228,7 @@ export default function FireMap() {
             "fill-color": theme.color.problem,
             "fill-opacity": 0.4,
           }}
+          fillOnClick={handleFireRegionClick}
         />
 
         <GeoJSONLayer

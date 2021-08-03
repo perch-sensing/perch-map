@@ -4,8 +4,8 @@ import { a } from "react-spring";
 import { X as XIcon } from "react-feather";
 import DirectionalControls from "./DirectionalControls";
 import { unixTimeToDate } from "../utils";
-import { Bar } from "react-chartjs-2";
-import theme from "../theme";
+import AxisLabel from "./axis";
+import { BarChart, CartesianGrid, XAxis,YAxis,Tooltip, Bar, Legend, ResponsiveContainer, Label } from "recharts"
 
 const infoCardCss = (theme) => css`
   position: relative;
@@ -14,7 +14,6 @@ const infoCardCss = (theme) => css`
   height: 100%;
   z-index: 7;
   box-shadow: ${theme.shadow.card};
-
   ${theme.breakpoint.small} {
     width: 100vw;
   }
@@ -28,7 +27,6 @@ const contentCss = css`
   height: 100%;
   overflow-y: scroll;
   scrollbar-width: none;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -51,7 +49,6 @@ const titleCss = (theme) => css`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-
   ${theme.breakpoint.small} {
     flex-direction: column;
   }
@@ -77,7 +74,6 @@ const fireStatsCss = (theme) => css`
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   list-style: none;
-
   ${theme.breakpoint.small} {
     grid-template-columns: 1fr;
   }
@@ -86,7 +82,6 @@ const fireStatsCss = (theme) => css`
 const costSectionCss = (theme) => css`
   position: relative;
   max-width: 100%;
-
   h3 {
     font-size: 30px;
     color: ${theme.color.flame};
@@ -95,34 +90,6 @@ const costSectionCss = (theme) => css`
 `;
 
 export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
-  const roiChartData = {
-    labels: ["Perch Cost over 15 years", "Cost of Fire"],
-
-    datasets: [
-      {
-        label: "",
-        data: [fireInfo?.DeploymentCost, fireInfo?.LandCost],
-        backgroundColor: [theme.color.leadBlue, theme.color.problem],
-      },
-    ],
-  };
-
-  const roiChartOptions = {
-    scales: {
-      responsive: true,
-      maintainAspectRatio: true,
-      y: {
-        title: {
-          display: true,
-          text: "Millions",
-        },
-        ticks: {
-          callback: (val) => "$" + val,
-        },
-      },
-    },
-  };
-
   const roiCss = (theme) => css`
     display: inline-block;
     color: ${fireInfo.ROI > 0 ? theme.color.greenSky : theme.color.problem};
@@ -131,7 +98,6 @@ export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
     font-family: "Fira Sans", sans-serif;
     font-size: 25px;
     font-weight: 300;
-
     &::before {
       content: "";
       display: inline-block;
@@ -189,16 +155,32 @@ export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
             <p css={roiCss}>
               {numberWithCommas(Math.round(fireInfo?.ROI)) + "% ROI"}
             </p>
-            <Bar
-              data={roiChartData}
-              options={roiChartOptions}
-              height={"250px"}
-            />
+            <ROIBarChart data={[{"name":"costComparison", fireCost: fireInfo?.LandCost, deploymentCost: fireInfo?.DeploymentCost}]}/>
           </div>
         )}
       </div>
     </a.article>
   );
+}
+
+function ROIBarChart(props) {
+  const testStyle = {
+    position : "relative",
+    width: "500px",
+    height: "500px"
+  }
+  return <div style={testStyle}>< ResponsiveContainer width="100%" height="100%"> 
+    <BarChart data={props.data} height={250}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey={<Label value="Cost Comparison" fill={'black'} />} label={<Label value="Cost Comparison" fill={'black'} />} />
+      <YAxis label={<AxisLabel axisType="yAxis" x={15} y={125} width={0} height={0}>Cost in Millions</AxisLabel>}/>
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="fireCost" fill="#ee786d" />
+      <Bar dataKey="deploymentCost" fill="#317ca8" />
+    </BarChart>
+  </ResponsiveContainer>
+  </div>
 }
 
 function StatBadge({ stat, value }) {
