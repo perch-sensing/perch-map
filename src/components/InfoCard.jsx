@@ -89,6 +89,7 @@ const costSectionCss = (theme) => css`
   }
 `;
 
+export default function InfoCard({ onHide, fireInfo, style, onFireChange }) {
   const roiCss = (theme) => css`
     display: inline-block;
     color: ${fireInfo.ROI > 0 ? theme.color.greenSky : theme.color.problem};
